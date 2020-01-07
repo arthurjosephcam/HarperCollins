@@ -12,6 +12,7 @@ namespace HarperCollins
 {
     public class Program
     {
+        //Here We go!
         public static void Main(string[] args)
         {
             CreateWebHostBuilder(args).Build().Run();
