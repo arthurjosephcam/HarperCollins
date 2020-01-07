@@ -1,4 +1,4 @@
-﻿MERGE [CustomerData] AS [T]
+﻿MERGE [TileData] AS [T]
 USING 
 (
 	VALUES 
@@ -208,17 +208,13 @@ AS [S] ([ISBN],[Title], [Author], [Format], [ListPrice])
 
 ON [T].[ISBN] = [S].[ISBN]
 
-WHEN MATCHED AND [T].[Title] <> [S].[Title] THEN
-	UPDATE SET [Title] = [S].[Title]
+WHEN MATCHED  THEN
+	UPDATE SET 
+	[Title] = [S].[Title],
+	[Author] = [S].[Author],
+	[Format] = [S].[Format],
+	[ListPrice] = [S].[ListPrice]
 
-WHEN MATCHED AND [T].[Author] <> [S].[Author] THEN
-	UPDATE SET [Author] = [S].[Author]
-
-WHEN MATCHED AND [T].[Format] <> [S].[Format] THEN
-	UPDATE SET [Format] = [S].[Format]
-
-WHEN MATCHED AND [T].[ListPrice] <> [S].[ListPrice] THEN
-	UPDATE SET [ListPrice] = [S].[ListPrice]
 
 
 WHEN NOT MATCHED THEN

@@ -61,12 +61,12 @@
     <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Scripts\PostDeployment.sql" />
+    <PostDeploy Include="Scripts\PostDeployment.sql" />
     <Build Include="Tables\CustomerData.sql" />
     <Build Include="Tables\TileData.sql" />
     <Build Include="Tables\SalesData.sql" />
-    <Build Include="Scripts\PostDeployCustomerData.sql" />
-    <Build Include="Scripts\PostDeployTileData.sql" />
+    <None Include="Scripts\PostDeployCustomerData.sql" />
+    <None Include="Scripts\PostDeployTileData.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HarperCollins Database.refactorlog" />

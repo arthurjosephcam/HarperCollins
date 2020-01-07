@@ -1,4 +1,4 @@
-﻿MERGE [CustomerData] AS [T]
+﻿MERGE [dbo].[CustomerData] AS [T]
 USING 
 (
 	VALUES (10329754,'BARNES & NOBLE DISTRIBUTION','ATTN JOHN PICKFORD','DEPT 1709011','PO BOX 1843'),
@@ -206,18 +206,13 @@ USING
 ) AS [S] ([CustomerNumber],[CustomerName], [AddressLine1], [AddressLine2], [AddressLine3])
 ON [T].[CustomerNumber] = [S].[CustomerNumber]
 
-WHEN MATCHED AND [T].[CustomerName] <> [S].[CustomerName] THEN
-	UPDATE SET [CustomerName] = [S].[CustomerName]
-
-WHEN MATCHED AND [T].[AddressLine1] <> [S].[AddressLine1] THEN
-	UPDATE SET [AddressLine1] = [S].[AddressLine1]
-
-WHEN MATCHED AND [T].[AddressLine2] <> [S].[AddressLine2] THEN
-	UPDATE SET [AddressLine2] = [S].[AddressLine2]
-
-WHEN MATCHED AND [T].[AddressLine3] <> [S].[AddressLine3] THEN
-	UPDATE SET [AddressLine3] = [S].[AddressLine3]
-
+WHEN MATCHED  THEN
+	UPDATE SET 
+	[CustomerName] = [S].[CustomerName],
+	[AddressLine1] = [S].[AddressLine1],
+	[AddressLine2] = [S].[AddressLine2],
+	[AddressLine3] = [S].[AddressLine3]
+	   
 
 WHEN NOT MATCHED THEN
 	INSERT ([CustomerNumber],[CustomerName], [AddressLine1], [AddressLine2], [AddressLine3])
