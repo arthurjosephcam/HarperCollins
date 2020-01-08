@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HarperCollins.Repository.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,12 @@ namespace HarperCollins.Repository
 {
     public interface ITileDataRepository
     {
+        Task<IEnumerable<TileData>> GetTileDatas();
+        TileData UpdateTileData(TileData TileData);
+        TileData AddTileData(TileData TileData);
+        void DeleteTileData(TileData TileData);
+
+        Task<CustomerData> GetTileData(String ISBN);
     }
+
 }
