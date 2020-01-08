@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[SalesData]
 (
-	[SalesId] INT NOT NULL PRIMARY KEY, 
+--SalesId could be guid. --Decided to make it guid, rather than int
+	[SalesId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [OrderDate] DATETIME NOT NULL DEFAULT GetDate(), 
     [ISBN] VARCHAR(20) NOT NULL, 
     [CustomerNumber] INT NOT NULL, 

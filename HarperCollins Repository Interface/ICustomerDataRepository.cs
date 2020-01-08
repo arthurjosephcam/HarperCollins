@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HarperCollins_Repository_Interface
+namespace HarperCollins.Repository
 {
-    public class Class1
+    public interface ICustomerDataRepository
     {
     }
 }
