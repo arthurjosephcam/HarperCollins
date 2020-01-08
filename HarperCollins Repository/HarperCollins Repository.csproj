@@ -104,8 +104,12 @@
     <Compile Include="Configurations\CustomerDataConfiguration.cs" />
     <Compile Include="Configurations\SalesDataConfiguration.cs" />
     <Compile Include="Configurations\TileDataConfiguration.cs" />
+    <Compile Include="CustomerDataRepository.cs" />
     <Compile Include="DbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesDataRepository.cs" />
+    <Compile Include="TileDataRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HarperCollins Repository Interface\HarperCollins Repository Interface.csproj">
