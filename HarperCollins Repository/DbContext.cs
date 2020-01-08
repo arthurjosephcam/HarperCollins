@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HarperCollins.Repository
 {
-    public class Class1
+    class DbContext
     {
     }
 }
