@@ -95,11 +95,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HarperCollins Repository Interface\HarperCollins Repository Interface.csproj">
+      <Project>{331552a7-1b6a-4354-9f0f-4199ae870e9d}</Project>
+      <Name>HarperCollins Repository Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HarperCollins Service Interface\HarperCollins Service Interface.csproj">
+      <Project>{42bbdb88-5b07-401d-99fa-658d2caa1238}</Project>
+      <Name>HarperCollins Service Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
