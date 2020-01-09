@@ -17,27 +17,32 @@ namespace HarperCollins.Service
         }
         public TileData AddTileData(TileData TileData)
         {
-            throw new NotImplementedException();
+            var result = UnitOfWork.TileDataRepository.AddTileData(Mapper.Map<Repository.Models.TileData>(TileData));
+            return Mapper.Map<TileData>(result);
         }
 
         public void DeleteTileData(TileData TileData)
         {
-            throw new NotImplementedException();
+           UnitOfWork.TileDataRepository.DeleteTileData(Mapper.Map<Repository.Models.TileData>(TileData));
+
         }
 
-        public Task<TileData> GetTileData(string ISBN)
+        public async Task<TileData> GetTileData(string ISBN)
         {
-            throw new NotImplementedException();
+            var result = await UnitOfWork.TileDataRepository.GetTileData(ISBN);
+            return Mapper.Map<TileData>(result);
         }
 
-        public Task<IEnumerable<TileData>> GetTileDatas()
+        public async Task<IEnumerable<TileData>> GetTileDatas()
         {
-            throw new NotImplementedException();
+            var result = await UnitOfWork.TileDataRepository.GetTileDatas();
+            return Mapper.Map<IEnumerable<TileData>>(result);
         }
 
         public TileData UpdateTileData(TileData TileData)
         {
-            throw new NotImplementedException();
+            var result = UnitOfWork.TileDataRepository.UpdateTileData(Mapper.Map<Repository.Models.TileData>(TileData));
+            return Mapper.Map<TileData>(result);
         }
     }
 }

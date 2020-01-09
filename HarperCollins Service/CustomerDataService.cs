@@ -17,27 +17,31 @@ namespace HarperCollins.Service
         }
         public CustomerData AddCustomerData(CustomerData CustomerData)
         {
-            throw new NotImplementedException();
+            var result = UnitOfWork.CustomerDataRepository.AddCustomerData(Mapper.Map<Repository.Models.CustomerData>(CustomerData));
+            return Mapper.Map<CustomerData>(result);
         }
 
         public void DeleteCustomerData(CustomerData CustomerData)
         {
-            throw new NotImplementedException();
+           UnitOfWork.CustomerDataRepository.DeleteCustomerData(Mapper.Map<Repository.Models.CustomerData>(CustomerData));
         }
 
-        public Task<CustomerData> GetCustomerData(int CustomerNumber)
+        public async Task<CustomerData> GetCustomerData(int CustomerNumber)
         {
-            throw new NotImplementedException();
+            var result = await UnitOfWork.CustomerDataRepository.GetCustomerData(CustomerNumber);
+            return Mapper.Map<CustomerData>(result);
         }
 
-        public Task<IEnumerable<CustomerData>> GetCustomerDatas()
+        public async Task<IEnumerable<CustomerData>> GetCustomerDatas()
         {
-            throw new NotImplementedException();
+            var result = await UnitOfWork.CustomerDataRepository.GetCustomerDatas();
+            return Mapper.Map<IEnumerable<CustomerData>>(result);
         }
 
         public CustomerData UpdateCustomerData(CustomerData CustomerData)
         {
-            throw new NotImplementedException();
+            var result = UnitOfWork.CustomerDataRepository.UpdateCustomerData(Mapper.Map<Repository.Models.CustomerData>(CustomerData));
+            return Mapper.Map<CustomerData>(result);
         }
     }
 }
