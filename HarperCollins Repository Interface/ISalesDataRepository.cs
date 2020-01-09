@@ -9,9 +9,10 @@ namespace HarperCollins.Repository
 {
     public interface ISalesDataRepository
     {
-        Task<IEnumerable<SalesData>> GetSalesDatas();
+        Task<IEnumerable<SalesData>> GetSalesDatasAsync();
         Task<IEnumerable<SalesData>> GetSalesDatasByCustomerNumber(Int32 CustomerNumber);
         Task<IEnumerable<SalesData>> GetSalesDatasByISBN(String ISBN);
+        Task<IEnumerable<SalesData>> GetSalesDatasByStatus(String ISBN);
         SalesData UpdateSalesData(SalesData SalesData);
         SalesData AddSalesData(SalesData SalesData);
         void DeleteSalesData(SalesData SalesData);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,29 +16,39 @@ namespace HarperCollins.Repository
             this.Context = Context;
         }
 
-        public Task<IEnumerable<TileData>> GetTileDatas()
+        public async Task<IEnumerable<TileData>> GetTileDatas()
         {
-            throw new NotImplementedException();
+            return await Context.TileDatas
+                 .AsNoTracking()
+                 .ToArrayAsync()
+                 ;
         }
 
         public TileData UpdateTileData(TileData TileData)
         {
-            throw new NotImplementedException();
+            Context.TileDatas.Attach(TileData);
+            Context.Entry(TileData).State = EntityState.Modified;
+            return TileData;
         }
 
         public TileData AddTileData(TileData TileData)
         {
-            throw new NotImplementedException();
+            return Context.TileDatas.Add(TileData);
+
         }
 
         public void DeleteTileData(TileData TileData)
         {
-            throw new NotImplementedException();
+            Context.TileDatas.Attach(TileData);
+            Context.Entry(TileData).State = EntityState.Deleted;
         }
 
-        public Task<CustomerData> GetTileData(string ISBN)
+        public async Task<TileData> GetTileData(string ISBN)
         {
-            throw new NotImplementedException();
+            return await Context.TileDatas
+                .Where(td => td.ISBN == ISBN)
+                .FirstOrDefaultAsync()
+               ;
         }
     }
 }

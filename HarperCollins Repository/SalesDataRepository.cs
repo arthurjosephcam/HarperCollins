@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,34 +16,67 @@ namespace HarperCollins.Repository
             this.Context = Context;
         }
 
-        public Task<IEnumerable<SalesData>> GetSalesDatas()
+        public async Task<IEnumerable<SalesData>> GetSalesDatasAsync()
         {
-            throw new NotImplementedException();
+            return await Context.SalesDatas
+                 //.Include("SalesId")
+                 //.Include("OrderDate")
+                 //.Include("ISBN")
+                 //.Include("CustomerNumber")
+                 //.Include("OrderQuantity")
+                 //.Include("OrderStatus")
+                 .AsNoTracking()
+                 .ToArrayAsync()
+                 ;
         }
 
-        public Task<IEnumerable<SalesData>> GetSalesDatasByCustomerNumber(int CustomerNumber)
+        public async Task<IEnumerable<SalesData>> GetSalesDatasByCustomerNumber(int CustomerNumber)
         {
-            throw new NotImplementedException();
+            return await Context.SalesDatas
+                .Where(sd => sd.CustomerNumber == CustomerNumber)
+                .AsNoTracking()
+                .ToArrayAsync()
+                ;
+
+           
         }
 
-        public Task<IEnumerable<SalesData>> GetSalesDatasByISBN(string ISBN)
+        public async Task<IEnumerable<SalesData>> GetSalesDatasByISBN(string ISBN)
         {
-            throw new NotImplementedException();
+            return await Context.SalesDatas
+                .Where(sd => sd.ISBN == ISBN)
+                .AsNoTracking()
+                .ToArrayAsync()
+                ;
+        }
+        public async Task<IEnumerable<SalesData>> GetSalesDatasByStatus(string OrderStatus)
+        {
+            return await Context.SalesDatas
+                 .Where(sd => sd.OrderStatus == OrderStatus)
+                 .AsNoTracking()
+                 .ToArrayAsync()
+                 ;
         }
 
         public SalesData UpdateSalesData(SalesData SalesData)
         {
-            throw new NotImplementedException();
+            Context.SalesDatas.Attach(SalesData);
+            Context.Entry(SalesData).State = EntityState.Modified;
+            return SalesData;
         }
 
         public SalesData AddSalesData(SalesData SalesData)
         {
-            throw new NotImplementedException();
+            return Context.SalesDatas.Add(SalesData);
+
         }
 
         public void DeleteSalesData(SalesData SalesData)
         {
-            throw new NotImplementedException();
+            Context.SalesDatas.Attach(SalesData);
+            Context.Entry(SalesData).State = EntityState.Deleted;
         }
+
+
     }
 }

@@ -14,7 +14,7 @@ namespace HarperCollins.Repository
         TileData AddTileData(TileData TileData);
         void DeleteTileData(TileData TileData);
 
-        Task<CustomerData> GetTileData(String ISBN);
+        Task<TileData> GetTileData(String ISBN);
     }
 
 }
