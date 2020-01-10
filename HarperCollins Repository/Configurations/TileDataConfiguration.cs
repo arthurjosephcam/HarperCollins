@@ -13,7 +13,7 @@ namespace HarperCollins.Repository.Configurations
     {
         public TileDataConfiguration()
         {
-            ToTable("TileData");
+            ToTable("TileData","dbo");
             HasKey(f => f.ISBN);
 
             Property(f => f.ISBN).HasColumnName(@"ISBN").IsRequired().HasColumnType("nvarchar").HasMaxLength(20);

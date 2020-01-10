@@ -71,4 +71,7 @@
   <ItemGroup>
     <RefactorLog Include="HarperCollins Database.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="HarperCollins Database.publish.xml" />
+  </ItemGroup>
 </Project>

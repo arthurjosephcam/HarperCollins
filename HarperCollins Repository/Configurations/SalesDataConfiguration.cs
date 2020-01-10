@@ -13,7 +13,7 @@ namespace HarperCollins.Repository.Configurations
     {
         public SalesDataConfiguration()
         {
-            ToTable("TileData");
+            ToTable("SalesData", "dbo");
             HasKey(f => f.SalesId);
 
             Property(f => f.SalesId).HasColumnName(@"SalesId").IsRequired().HasColumnType("uniqueidentifier");
@@ -22,8 +22,16 @@ namespace HarperCollins.Repository.Configurations
             Property(f => f.OrderStatus).HasColumnName(@"OrderStatus").IsRequired().HasColumnType("varchar").HasMaxLength(20);
 
 
-            HasRequired(f => f.TileData).WithMany().HasForeignKey(rc => rc.ISBN);
-            HasRequired(f => f.CustomerData).WithMany().HasForeignKey(rc => rc.CustomerNumber);
+            HasRequired(f => f.TileData)
+                .WithMany()
+                .HasForeignKey(rc => rc.ISBN);
+            HasRequired(f => f.CustomerData)
+                .WithMany()
+                //.Map(mc =>
+                //{
+                //    mc.ToTable("CustomerData");
+                //});
+                .HasForeignKey(cd => cd.CustomerNumber);
 
 
         }

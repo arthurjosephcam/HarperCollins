@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using HarperCollins.Service;
 using HarperCollins.WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
+using HarperCollins.WebApplication;
 
 namespace HarperCollins.Controllers
 {
@@ -21,7 +22,16 @@ namespace HarperCollins.Controllers
         public async Task<IEnumerable<CustomerData>> GetAllClients()
         {
             var customerDatas = await CustomerDataService.GetCustomerDatas();
-            return Mapper.Map<IEnumerable<CustomerData>>(customerDatas);
+            try
+            {
+                var ret = Mapper.Map<IEnumerable<CustomerData>>(customerDatas);
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
         }
     }
 }

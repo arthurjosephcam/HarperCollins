@@ -13,7 +13,7 @@ namespace HarperCollins.Repository.Configurations
     {
         public CustomerDataConfiguration()
         {
-            ToTable("CustomerData");
+            ToTable("CustomerData", "dbo");
             HasKey(f => f.CustomerNumber);
 
             Property(f => f.CustomerNumber).HasColumnName(@"CustomerNumber").IsRequired().HasColumnType("int");//.HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

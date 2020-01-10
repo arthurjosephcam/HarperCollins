@@ -20,8 +20,10 @@ namespace HarperCollins.Repository
         {
             try {
                 var ret = await Context.CustomerDatas
+                    //.Include("Sales")
                   .AsNoTracking()
                   .ToArrayAsync()
+                  
                   ;
 
                 return ret;

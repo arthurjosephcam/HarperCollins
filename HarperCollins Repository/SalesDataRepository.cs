@@ -18,16 +18,23 @@ namespace HarperCollins.Repository
 
         public async Task<IEnumerable<SalesData>> GetSalesDatasAsync()
         {
-            return await Context.SalesDatas
+            try {
+                return await Context.SalesDatas
                  //.Include("SalesId")
                  //.Include("OrderDate")
                  //.Include("ISBN")
                  //.Include("CustomerNumber")
-                 //.Include("OrderQuantity")
-                 //.Include("OrderStatus")
+                 .Include("TileData")
+                 .Include("CustomerData")
                  .AsNoTracking()
                  .ToArrayAsync()
                  ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
         public async Task<IEnumerable<SalesData>> GetSalesDatasByCustomerNumber(int CustomerNumber)

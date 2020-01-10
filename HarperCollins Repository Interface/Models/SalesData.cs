@@ -19,5 +19,7 @@ namespace HarperCollins.Repository.Models
 
         public String ISBN { get; set; }
         public TileData TileData { get; set; }
+
+    
     }
 }
