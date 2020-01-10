@@ -8,7 +8,7 @@ using HarperCollins.Service.Models;
 
 namespace HarperCollins.Service
 {
-    class SalesDataService : ISalesDataService
+    public class SalesDataService : ISalesDataService
     {
 
         private readonly IUnitOfWork UnitOfWork;
