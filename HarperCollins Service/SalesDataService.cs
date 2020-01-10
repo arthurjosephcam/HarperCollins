@@ -22,6 +22,17 @@ namespace HarperCollins.Service
             return Mapper.Map<SalesData>(result);
         }
 
+        public Boolean BulkAddSalesData(IEnumerable<SalesData> SalesDatas)
+        {
+
+            foreach(var salesData in SalesDatas)
+            {
+                UnitOfWork.SalesDataRepository.AddSalesData(Mapper.Map<Repository.Models.SalesData>(salesData));
+            }
+
+            return true;
+        }
+
         public void DeleteSalesData(SalesData SalesData)
         {
             UnitOfWork.SalesDataRepository.DeleteSalesData(Mapper.Map<Repository.Models.SalesData>(SalesData));

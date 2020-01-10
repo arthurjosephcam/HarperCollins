@@ -31,9 +31,20 @@ namespace HarperCollins.Controllers
 
         }
 
-        [HttpGet("[action]")]
-        public  SalesData TestCreateNew()
+
+        [HttpPost("[action]")]
+        public Boolean SaveSales([FromBody] IEnumerable<SalesData> salesDatas)
         {
+            SalesDataService.BulkAddSalesData(Mapper.Map<IEnumerable<Service.Models.SalesData>>(salesDatas));
+            return true;
+        }
+
+
+
+        [HttpGet("[action]")]
+        public  Boolean TestCreateNew()
+        {
+            List<SalesData> salesDatas = new List<SalesData>();
 
             CustomerData cust = new CustomerData();
             cust.CustomerNumber = 10000411;
@@ -51,9 +62,34 @@ namespace HarperCollins.Controllers
             sales.ISBN = tile.ISBN;
             sales.CustomerNumber = cust.CustomerNumber;
 
-            var newSalesData =  SalesDataService.AddSalesData(Mapper.Map<Service.Models.SalesData>(sales));
 
-            return Mapper.Map<SalesData>(newSalesData);
+            CustomerData cust2 = new CustomerData();
+            cust2.CustomerNumber = 10000411;
+            cust2.CustomerName = "WHITEHOTS INC";
+
+
+            TileData tile2 = new TileData();
+            tile2.ISBN = "9780007371464";
+
+            SalesData sales2 = new SalesData();
+            sales2.OrderDate = DateTime.Now;
+            sales2.SalesId = Guid.NewGuid();
+            sales2.OrderQuantity = 2;
+            sales2.OrderStatus = "Preparing";
+            sales2.ISBN = tile.ISBN;
+            sales2.CustomerNumber = cust.CustomerNumber;
+
+
+            salesDatas.Add(sales);
+            salesDatas.Add(sales2);
+
+            IEnumerable<SalesData> ss = salesDatas;
+            SalesDataService.BulkAddSalesData(Mapper.Map<IEnumerable<Service.Models.SalesData>>(ss));
+
+            return true;
+            //var newSalesData =  SalesDataService.AddSalesData(Mapper.Map<Service.Models.SalesData>(sales));
+
+            //return Mapper.Map<SalesData>(newSalesData);
         }
 
     }

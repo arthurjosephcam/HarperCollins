@@ -14,8 +14,9 @@ namespace HarperCollins.Repository.Configurations
         public SalesDataConfiguration()
         {
             ToTable("SalesData", "dbo");
-            HasKey(f => f.SalesId);
+            HasKey(f => f.ActualSalesId);
 
+            Property(f => f.ActualSalesId).HasColumnName(@"ActualSalesId").IsRequired().HasColumnType("int");
             Property(f => f.SalesId).HasColumnName(@"SalesId").IsRequired().HasColumnType("uniqueidentifier");
             Property(f => f.OrderDate).HasColumnName(@"OrderDate").IsRequired().HasColumnType("datetime");
             Property(f => f.OrderQuantity).HasColumnName(@"OrderQuantity").IsRequired().HasColumnType("int");

@@ -15,6 +15,7 @@ namespace HarperCollins.Service
         Task<IEnumerable<SalesData>> GetSalesDatasByStatus(String OrderStatus);
         SalesData UpdateSalesData(SalesData SalesData);
         SalesData AddSalesData(SalesData SalesData);
+        Boolean BulkAddSalesData(IEnumerable<SalesData> SalesDatas);
         void DeleteSalesData(SalesData SalesData);
 
         //Task<SalesData> GetSalesData(Int32 CustomerNumber);
