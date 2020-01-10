@@ -18,10 +18,19 @@ namespace HarperCollins.Repository
 
         public async Task<IEnumerable<CustomerData>> GetCustomerDatas()
         {
-            return await Context.CustomerDatas
+            try {
+                var ret = await Context.CustomerDatas
                   .AsNoTracking()
                   .ToArrayAsync()
                   ;
+
+                return ret;
+
+            }
+            catch(Exception ex) {
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         public CustomerData UpdateCustomerData(CustomerData CustomerData)
