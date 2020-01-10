@@ -69,7 +69,9 @@ namespace HarperCollins.Repository
         {
             Context.SalesDatas.Attach(SalesData);
             Context.Entry(SalesData).State = EntityState.Modified;
-            return SalesData;
+            Context.SaveChanges();
+
+            return Context.SalesDatas.Where(sd => sd.SalesId == SalesData.SalesId).FirstOrDefault(); ;
         }
 
         public SalesData AddSalesData(SalesData SalesData)
@@ -87,6 +89,7 @@ namespace HarperCollins.Repository
         {
             Context.SalesDatas.Attach(SalesData);
             Context.Entry(SalesData).State = EntityState.Deleted;
+            Context.SaveChanges();
         }
 
 

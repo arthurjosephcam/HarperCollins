@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ClientsComponent } from './ClientsComponent/clients.component';
+import { TitlesComponent } from './TitlesComponent/titles.component';
 
 
 
@@ -20,7 +21,8 @@ import { ClientsComponent } from './ClientsComponent/clients.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ClientsComponent
+    ClientsComponent,
+    TitlesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,6 +33,7 @@ import { ClientsComponent } from './ClientsComponent/clients.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'app-clients', component: ClientsComponent },
+      { path: 'app-titles', component: TitlesComponent },
 
 
     ])

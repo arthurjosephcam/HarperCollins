@@ -20,7 +20,7 @@ namespace HarperCollins.Repository
         {
             try {
                 var ret = await Context.CustomerDatas
-                    //.Include("Sales")
+                   //.Include("Sales")
                   .AsNoTracking()
                   .ToArrayAsync()
                   
@@ -35,10 +35,32 @@ namespace HarperCollins.Repository
             
         }
 
+        public async Task<IEnumerable<CustomerData>> GetCustomerDatasWithSales()
+        {
+            try
+            {
+                var ret = await Context.CustomerDatas
+                   .Include("Sales")
+                  .AsNoTracking()
+                  .ToArrayAsync()
+
+                  ;
+
+                return ret;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
         public CustomerData UpdateCustomerData(CustomerData CustomerData)
         {
             Context.CustomerDatas.Attach(CustomerData);
             Context.Entry(CustomerData).State = EntityState.Modified;
+
             return CustomerData;
         }
 

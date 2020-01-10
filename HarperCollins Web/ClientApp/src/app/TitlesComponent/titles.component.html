@@ -1,0 +1,28 @@
+<h1>Titles</h1>
+
+
+
+<p *ngIf="!titles"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="titles">
+  <thead>
+    <tr>
+
+      <th>isbn</th>
+      <th>title</th>
+      <th>author</th>
+      <th>format</th>
+      <th>listPrice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let title of titles">
+      <td>{{ title.isbn}}</td>
+      <td>{{ title.title}}</td>
+      <td>{{ title.author}}</td>
+      <td>{{ title.format}}</td>
+      <td>{{ title.listPrice}}</td>
+     
+    </tr>
+  </tbody>
+</table>

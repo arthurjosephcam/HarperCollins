@@ -25,4 +25,10 @@ export class HarperCollinsService
     var ret = this.http.get(this.baseUrl + 'api/CustomerData/getAllClients');
     return ret;
   }
+
+  getAllTitles()
+  {
+    var ret = this.http.get(this.baseUrl + 'api/TileData/getAllTiles');
+    return ret;
+  }
 }

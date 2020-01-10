@@ -8,4 +8,14 @@ export namespace HarperCollins
     public addressLine2: String;
     public addressLine3: String;
   }
+
+  export class tileData
+  {
+    public isbn: String
+    public title: String;
+    public author: String;
+    public format: String;
+    public listPrice: number;
+        
+  }
 }
