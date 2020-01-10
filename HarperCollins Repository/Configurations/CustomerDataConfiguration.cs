@@ -22,6 +22,8 @@ namespace HarperCollins.Repository.Configurations
             Property(f => f.AddressLine2).HasColumnName(@"AddressLine2").HasColumnType("ntext");
             Property(f => f.AddressLine3).HasColumnName(@"AddressLine3").HasColumnType("ntext");
 
+            HasMany(f => f.Sales).WithRequired(f => f.CustomerData).HasForeignKey(f => f.CustomerNumber);
+
         }
     }
 }

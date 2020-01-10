@@ -30,6 +30,32 @@ namespace HarperCollins.Controllers
             
 
         }
+
+        [HttpGet("[action]")]
+        public  SalesData TestCreateNew()
+        {
+
+            CustomerData cust = new CustomerData();
+            cust.CustomerNumber = 10000411;
+            cust.CustomerName = "WHITEHOTS INC";
+
+
+            TileData tile = new TileData();
+            tile.ISBN = "9780007371464";
+
+            SalesData sales = new SalesData();
+            sales.OrderDate = DateTime.Now;
+            sales.SalesId = Guid.NewGuid();
+            sales.OrderQuantity = 2;
+            sales.OrderStatus = "Pending";
+            sales.ISBN = tile.ISBN;
+            sales.CustomerNumber = cust.CustomerNumber;
+
+            var newSalesData =  SalesDataService.AddSalesData(Mapper.Map<Service.Models.SalesData>(sales));
+
+            return Mapper.Map<SalesData>(newSalesData);
+        }
+
     }
 
 }

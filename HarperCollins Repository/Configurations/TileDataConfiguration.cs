@@ -22,6 +22,9 @@ namespace HarperCollins.Repository.Configurations
             Property(f => f.Format).HasColumnName(@"Format").IsRequired().HasColumnType("nvarchar").HasMaxLength(100);
             Property(f => f.ListPrice).HasColumnName(@"ListPrice").IsRequired().HasColumnType("money");
 
+            HasMany(f => f.Sales).WithRequired(f => f.TileData).HasForeignKey(f => f.ISBN);
+
+
         }
     }
 }

@@ -23,14 +23,10 @@ namespace HarperCollins.Repository.Configurations
 
 
             HasRequired(f => f.TileData)
-                .WithMany()
-                .HasForeignKey(rc => rc.ISBN);
+                .WithMany(f=> f.Sales)
+                .HasForeignKey(f => f.ISBN);
             HasRequired(f => f.CustomerData)
-                .WithMany()
-                //.Map(mc =>
-                //{
-                //    mc.ToTable("CustomerData");
-                //});
+                .WithMany(f=> f.Sales)
                 .HasForeignKey(cd => cd.CustomerNumber);
 
 

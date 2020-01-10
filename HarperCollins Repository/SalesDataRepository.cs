@@ -74,7 +74,12 @@ namespace HarperCollins.Repository
 
         public SalesData AddSalesData(SalesData SalesData)
         {
-            return Context.SalesDatas.Add(SalesData);
+            var salesData = Context.SalesDatas.Add(SalesData);
+
+            Context.SaveChanges();
+
+            return Context.SalesDatas.Where(sd => sd.SalesId == SalesData.SalesId).FirstOrDefault();
+           
 
         }
 
