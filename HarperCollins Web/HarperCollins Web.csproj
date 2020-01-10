@@ -36,6 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\ServiceLayer\harperCollins.CommonFunctions.ts" />
+    <None Remove="ClientApp\src\app\ServiceLayer\harperCollins.Objects.ts" />
+    <None Remove="ClientApp\src\app\ServiceLayer\harperCollins.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HarperCollins Database\HarperCollins Database.sqlproj" />
     <ProjectReference Include="..\HarperCollins Repository Interface\HarperCollins Repository Interface.csproj" />
     <ProjectReference Include="..\HarperCollins Repository\HarperCollins Repository.csproj" />
@@ -47,6 +53,12 @@
     <Reference Include="Castle.Windsor.AspDotNetCore.Extensions">
       <HintPath>..\HarperCollins\Library\Castle.Windsor.AspDotNetCore.Extensions.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\ServiceLayer\harperCollins.CommonFunctions.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\ServiceLayer\harperCollins.Objects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\ServiceLayer\harperCollins.Service.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
