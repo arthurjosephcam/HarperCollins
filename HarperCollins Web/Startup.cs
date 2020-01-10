@@ -1,7 +1,9 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.MsDependencyInjection;
+using HarperCollins.Controllers;
 using HarperCollins.Repository;
+using HarperCollins.Service;
 using HarperCollins.WebApplication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -50,10 +52,28 @@ namespace HarperCollins_Web
             WindsorContainer.Register(Component.For<IUnitOfWork>()
                                                .ImplementedBy<UnitOfWork>()
                                                .DependsOn(Dependency.OnValue("ConnectionString", ConnectionString))
-                                               .DependsOn(Dependency.OnValue("Logger", Logger))
+                                               //.DependsOn(Dependency.OnValue("Logger", Logger))
                                                .LifestyleCustom<MsScopedLifestyleManager>());
 
+            // Register Services
+            WindsorContainer.Register(Component.For<ICustomerDataService>()
+                                               .ImplementedBy<CustomerDataService>()
+                                               .LifestyleCustom<MsScopedLifestyleManager>());
+            WindsorContainer.Register(Component.For<ISalesDataService>()
+                                             .ImplementedBy<SalesDataService>()
+                                             .LifestyleCustom<MsScopedLifestyleManager>());
+            WindsorContainer.Register(Component.For<ITileDataService>()
+                                             .ImplementedBy<TileDataService>()
+                                             .LifestyleCustom<MsScopedLifestyleManager>());
 
+
+            // Register controllers
+            WindsorContainer.Register(Component.For<CustomerDataController>()
+                                                           .LifestyleCustom<MsScopedLifestyleManager>());
+            WindsorContainer.Register(Component.For<SalesDataController>()
+                                               .LifestyleCustom<MsScopedLifestyleManager>());
+            WindsorContainer.Register(Component.For<TileDataController>()
+                                                           .LifestyleCustom<MsScopedLifestyleManager>());
 
         }
 
@@ -62,6 +82,8 @@ namespace HarperCollins_Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddCastleControllerActivator(WindsorContainer);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

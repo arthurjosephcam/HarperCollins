@@ -11,16 +11,16 @@ namespace HarperCollins.Repository
     {
         DbContext Context { get; set; }
 
-        public UnitOfWork(String ConnectionString, ILogger Logger)
-        {
-            if (ConnectionString == null)
-                throw new ArgumentNullException("ConnectionString", "ConnectionString cannot be null");
+        //public UnitOfWork(String ConnectionString, ILogger Logger)
+        //{
+        //    if (ConnectionString == null)
+        //        throw new ArgumentNullException("ConnectionString", "ConnectionString cannot be null");
 
-            this.Context = new DbContext(ConnectionString, Logger);
+        //    this.Context = new DbContext(ConnectionString, Logger);
 
-            InitializeRepositories();
+        //    InitializeRepositories();
 
-        }
+        //}
 
         public UnitOfWork(String ConnectionString)
         {
