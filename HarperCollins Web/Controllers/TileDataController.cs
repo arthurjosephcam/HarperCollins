@@ -34,5 +34,19 @@ namespace HarperCollins.Controllers
 
 
         }
+
+        [HttpGet("[action]")]
+        public async Task<IEnumerable<TileData>> SearchTiles(String Keyword)
+        {
+            var tileDatas = await TileDataService.SearchTile(Keyword);
+
+            try
+            {
+                return Mapper.Map<IEnumerable<TileData>>(tileDatas);
+            }
+            catch (Exception ex) { throw ex; }
+
+
+        }
     }
 }

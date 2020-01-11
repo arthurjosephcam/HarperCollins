@@ -50,5 +50,17 @@ namespace HarperCollins.Repository
                 .FirstOrDefaultAsync()
                ;
         }
+
+        public async Task<IEnumerable<TileData>> SearchTiles(string Keyword)
+        {
+            return await Context.TileDatas
+                 .Where(td => td.ISBN.Contains(Keyword)
+                 || td.Title.Contains(Keyword)
+                 || td.Author.Contains(Keyword)
+                 )
+                .AsNoTracking()
+                .ToArrayAsync()
+                ;
+        }
     }
 }

@@ -83,5 +83,16 @@ namespace HarperCollins.Repository
                 .FirstOrDefaultAsync()
                ;
         }
+
+        public async Task<IEnumerable<CustomerData>> SearchCustomers(string Keyword)
+        {
+            return await Context.CustomerDatas
+                .Where(cd => cd.CustomerName.Contains(Keyword) ||
+                cd.CustomerNumber.ToString().Contains(Keyword)
+                )
+                .AsNoTracking()
+                .ToListAsync()
+               ;
+        }
     }
 }

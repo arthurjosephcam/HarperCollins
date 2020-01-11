@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ClientsComponent } from './ClientsComponent/clients.component';
 import { TitlesComponent } from './TitlesComponent/titles.component';
+import { SalesComponent } from './SalesComponent/sales.component';
 
 
 
@@ -22,7 +23,8 @@ import { TitlesComponent } from './TitlesComponent/titles.component';
     CounterComponent,
     FetchDataComponent,
     ClientsComponent,
-    TitlesComponent
+    TitlesComponent,
+    SalesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -34,6 +36,7 @@ import { TitlesComponent } from './TitlesComponent/titles.component';
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'app-clients', component: ClientsComponent },
       { path: 'app-titles', component: TitlesComponent },
+      { path: 'app-sales', component: SalesComponent },
 
 
     ])

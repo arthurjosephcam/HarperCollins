@@ -74,4 +74,7 @@
   <ItemGroup>
     <None Include="HarperCollins Database.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\EventLogs.sql" />
+  </ItemGroup>
 </Project>

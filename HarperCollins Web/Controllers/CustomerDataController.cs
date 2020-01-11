@@ -33,5 +33,21 @@ namespace HarperCollins.Controllers
             }
            
         }
+
+        [HttpGet("[action]")]
+        public async Task<IEnumerable<CustomerData>> SearchClients(String Keyword)
+        {
+            var customerDatas = await CustomerDataService.SearchCustomer(Keyword);
+            try
+            {
+                var ret = Mapper.Map<IEnumerable<CustomerData>>(customerDatas);
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }

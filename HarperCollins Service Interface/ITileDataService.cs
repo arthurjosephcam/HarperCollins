@@ -10,6 +10,8 @@ namespace HarperCollins.Service
     public interface ITileDataService
     {
         Task<IEnumerable<TileData>> GetTileDatas();
+        Task<IEnumerable<TileData>> SearchTile(String Keyword);
+        
         TileData UpdateTileData(TileData TileData);
         TileData AddTileData(TileData TileData);
         void DeleteTileData(TileData TileData);

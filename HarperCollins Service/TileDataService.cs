@@ -39,6 +39,12 @@ namespace HarperCollins.Service
             return Mapper.Map<IEnumerable<TileData>>(result);
         }
 
+        public async Task<IEnumerable<TileData>> SearchTile(String Keyword)
+        {
+            var result = await UnitOfWork.TileDataRepository.SearchTiles(Keyword);
+            return Mapper.Map<IEnumerable<TileData>>(result);
+        }
+
         public TileData UpdateTileData(TileData TileData)
         {
             var result = UnitOfWork.TileDataRepository.UpdateTileData(Mapper.Map<Repository.Models.TileData>(TileData));

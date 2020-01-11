@@ -20,6 +20,13 @@ export class HarperCollinsService
   ) { }
 
 
+
+  searchCustomers(keyword: String)
+  {
+    var ret = this.http.get(this.baseUrl + 'api/CustomerData/SearchClients?Keyword=' + keyword);
+    return ret;
+  }
+
   getAllClients()
   {
     var ret = this.http.get(this.baseUrl + 'api/CustomerData/getAllClients');

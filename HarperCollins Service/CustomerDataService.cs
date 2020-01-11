@@ -38,6 +38,12 @@ namespace HarperCollins.Service
             return Mapper.Map<IEnumerable<CustomerData>>(result);
         }
 
+        public async Task<IEnumerable<CustomerData>> SearchCustomer(String Keyword)
+        {
+            var result = await UnitOfWork.CustomerDataRepository.SearchCustomers(Keyword);
+            return Mapper.Map<IEnumerable<CustomerData>>(result);
+        }
+
         public CustomerData UpdateCustomerData(CustomerData CustomerData)
         {
             var result = UnitOfWork.CustomerDataRepository.UpdateCustomerData(Mapper.Map<Repository.Models.CustomerData>(CustomerData));

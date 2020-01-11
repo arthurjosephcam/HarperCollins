@@ -10,6 +10,8 @@ namespace HarperCollins.Repository
     public interface ITileDataRepository
     {
         Task<IEnumerable<TileData>> GetTileDatas();
+        Task<IEnumerable<TileData>> SearchTiles(String Keyword);
+
         TileData UpdateTileData(TileData TileData);
         TileData AddTileData(TileData TileData);
         void DeleteTileData(TileData TileData);
