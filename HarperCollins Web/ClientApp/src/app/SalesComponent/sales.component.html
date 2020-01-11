@@ -1,13 +1,14 @@
 <p>Search for clients</p>
 <div class="container">
   <div class="row">
-    <div class="col-8">
-      <input type="text" id="searchBox" [(ngModel)]="searchKeyword" class="form-control" placeholder="Search by Customer Name or Customer Number" />
+    <div class="col-12">
+      <div class=" ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="pi pi-search" style="line-height: 1.25;"></i></span>
+        <input pInputText style="width:100%" [(ngModel)]="searchKeyword" placeholder="Search by Customer Name or Customer Number" (input)="searchCustomers()" />
+      </div>
+     
     </div>
-    <div class="col-4">
-      <button (click)="searchCustomers()">Go!</button>
-
-    </div>
+    
   </div>
   <div class="row" *ngIf="!isProcessing">
     <p *ngIf="!customers"><em>Search to find customers.</em></p>

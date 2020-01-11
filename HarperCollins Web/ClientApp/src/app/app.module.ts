@@ -13,6 +13,10 @@ import { ClientsComponent } from './ClientsComponent/clients.component';
 import { TitlesComponent } from './TitlesComponent/titles.component';
 import { SalesComponent } from './SalesComponent/sales.component';
 
+//primeng modules
+import { ToastModule } from 'primeng/toast';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -29,6 +33,8 @@ import { SalesComponent } from './SalesComponent/sales.component';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    ToastModule,
+    AutoCompleteModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -41,7 +47,9 @@ import { SalesComponent } from './SalesComponent/sales.component';
 
     ])
   ],
-  providers: [],
+  providers: [
+    MessageService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

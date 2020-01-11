@@ -39,10 +39,7 @@ export class SalesComponent
     });
   }
 
-  onSearchChange(keyword: String)
-  {
-    var something = keyword;
-  }
+  
 
   searchCustomers()
   {
@@ -53,7 +50,10 @@ export class SalesComponent
     {
       this.customers = <HarperCollins.customerData[]>result;
     },
-      error => { this.commonFunctions.writeIt(error); this.isProcessing = false;},
+      error => {
+        this.commonFunctions.writeIt(error);
+        this.commonFunctions.showToasterError("Error loading customer.", "A server side error occured! Please see the console for error details!");
+        this.isProcessing = false;},
       () =>
       {
         this.isProcessing = false;
