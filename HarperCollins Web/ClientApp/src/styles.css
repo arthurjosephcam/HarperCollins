@@ -6,6 +6,20 @@
 
 
 
+.text-harper {
+  color: #01a7dc !important;
+}
+
+.text-harper-dark {
+  color: #005089 !important;
+}
+
+.text-harper-title {
+  color: #005089 !important;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .btn-harper {
   color: #fff;
   background-color: #01a7dc;

@@ -51,7 +51,7 @@
     </div>
     <div class="row">
       <div class="col-8">
-        <span class="text-dark">   {{selectedCustomer.customerName}} </span>
+        <span class="text-harper-dark">   {{selectedCustomer.customerName}} </span>
       </div>
       <div class="col-4 text-right"><button class="btn-harper" (click)="step='selectCustomer'">Return to Customer Selection</button></div>
     </div>
@@ -69,18 +69,19 @@
         <div class="row" *ngIf="!isProcessing">
           <br />
           <p *ngIf="!titles"><em>Search to find titles.</em></p>
-          <table class='table table-striped' *ngIf="titles">
-            <thead>
+          <p-table [value]="titles" *ngIf="titles">
+            <ng-template pTemplate="header">
               <tr>
                 <th>ISBN</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Format</th>
                 <th>List Price</th>
+                <th>Add Sales</th>
               </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let title of titles">
+            </ng-template>
+            <ng-template pTemplate="body" let-title>
+              <tr>
                 <td>{{ title.isbn}}</td>
                 <td>{{ title.title}}</td>
                 <td>{{ title.author}}</td>
@@ -89,9 +90,9 @@
                 <td><button (click)="selectTitle(title)">+</button></td>
 
               </tr>
-            </tbody>
-          </table>
-        </div>
+            </ng-template>
+          </p-table>
+</div>
         <div class="row" *ngIf="isProcessing">
           Loading..
         </div>

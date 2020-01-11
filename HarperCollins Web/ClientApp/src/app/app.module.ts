@@ -13,10 +13,11 @@ import { ClientsComponent } from './ClientsComponent/clients.component';
 import { TitlesComponent } from './TitlesComponent/titles.component';
 import { SalesComponent } from './SalesComponent/sales.component';
 
-//primeng modules
+//primeng modules and services
 import { ToastModule } from 'primeng/toast';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MessageService } from 'primeng/api';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MessageService } from 'primeng/api';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    TableModule,
     ToastModule,
     AutoCompleteModule,
     FormsModule,
