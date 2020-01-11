@@ -4,3 +4,37 @@
 @import "../node_modules/primeng/resources/themes/nova-light/theme.css";
 @import "../node_modules/primeng/resources/primeng.min.css";
 
+
+
+.btn-harper {
+  color: #fff;
+  background-color: #01a7dc;
+  border-color: #01a7dc;
+  box-shadow: 1px 1px 1px #005089;
+}
+
+  .btn-harper:hover {
+    color: #fff;
+    background-color: #0180a9;
+    border-color: #0180a9;
+  }
+
+  .btn-harper.focus, .btn-harper:focus {
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.5)
+  }
+
+  .btn-harper.disabled, .btn-harper:disabled {
+    color: #fff;
+    background-color: #01a7dc;
+    border-color: #01a7dc;
+  }
+
+  .btn-harper:not(:disabled):not(.disabled).active, .btn-harper:not(:disabled):not(.disabled):active, .show > .btn-harper.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+  }
+
+    .btn-harper:not(:disabled):not(.disabled).active:focus, .btn-harper:not(:disabled):not(.disabled):active:focus, .show > .btn-harper.dropdown-toggle:focus {
+      box-shadow: 0 0 0 .2rem rgba(0,123,255,.5);
+    }

@@ -16,6 +16,7 @@ export class SalesComponent
   selectedCustomer: HarperCollins.customerData;
   searchKeyword: String;
   isProcessing: boolean;
+  step: String = "selectCustomer";
 
 
   constructor(
@@ -66,6 +67,7 @@ export class SalesComponent
   selectCustomer(customer: HarperCollins.customerData)
   {
     this.selectedCustomer = customer;
+    this.step = "selectTitle";
     
   }
 
