@@ -13,6 +13,8 @@ export class SalesComponent
 {
 
   customers: HarperCollins.customerData[];
+  titles: HarperCollins.tileData[];
+
   selectedCustomer: HarperCollins.customerData;
   searchKeyword: String;
   isProcessing: boolean;
@@ -69,6 +71,28 @@ export class SalesComponent
     this.selectedCustomer = customer;
     this.step = "selectTitle";
     
+  }
+
+  searchTitles(searchKey: String)
+  {
+    this.isProcessing = true;
+
+    this.hcApi.searchTitles(searchKey).subscribe(result =>
+    {
+      this.titles = <HarperCollins.tileData[]>result;
+    },
+      error =>
+      {
+        this.commonFunctions.writeIt(error);
+        this.commonFunctions.showToasterError("Error loading titles.", "A server side error occured! Please see the console for error details!");
+        this.isProcessing = false;
+      },
+      () =>
+      {
+        this.isProcessing = false;
+      }
+
+    );
   }
 
 }

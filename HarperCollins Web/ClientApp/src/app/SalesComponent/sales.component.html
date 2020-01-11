@@ -53,10 +53,52 @@
       <div class="col-8">
         <span class="text-dark">   {{selectedCustomer.customerName}} </span>
       </div>
-      <div class="col-4"><button class="btn-harper" (click)="step='selectCustomer'">Return to Customer Selection</button></div>
+      <div class="col-4 text-right"><button class="btn-harper" (click)="step='selectCustomer'">Return to Customer Selection</button></div>
     </div>
+    <br />
+    <div class="row">
+      <div class="col-12">
+        <div class=" ui-inputgroup">
+          <span class="ui-inputgroup-addon"><i class="pi pi-search" style="line-height: 1.25;"></i></span>
+          <input pInputText style="width:100%" placeholder="Search by Title, ISBN or Author" (input)="searchTitles($event.target.value)" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="row" *ngIf="!isProcessing">
+          <br />
+          <p *ngIf="!titles"><em>Search to find titles.</em></p>
+          <table class='table table-striped' *ngIf="titles">
+            <thead>
+              <tr>
+                <th>ISBN</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Format</th>
+                <th>List Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let title of titles">
+                <td>{{ title.isbn}}</td>
+                <td>{{ title.title}}</td>
+                <td>{{ title.author}}</td>
+                <td>{{ title.format}}</td>
+                <td>{{ title.listPrice}}</td>
+                <td><button (click)="selectTitle(title)">+</button></td>
 
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row" *ngIf="isProcessing">
+          Loading..
+        </div>
+      </div>
+    </div>
   </div>
+
  
 
 </div>
