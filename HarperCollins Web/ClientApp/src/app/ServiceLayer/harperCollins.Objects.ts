@@ -29,11 +29,12 @@ export namespace HarperCollins
     public customerNumber: number;
     public customerName: String;
     //public customerData?: HarperCollins.customerData;
-    public isbn?: String;
+    public isbn: String;
     public title: String;
     public author: String;
     public format: String;
     public listPrice: number;
+    //public tileData?: HarperCollins.saleData;
    
   }
 }

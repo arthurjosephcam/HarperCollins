@@ -24,7 +24,8 @@ namespace HarperCollins.Controllers
             var salesDatas = await SalesDataService.GetSalesDatasAsync();
 
             try {
-                return Mapper.Map<IEnumerable<SalesData>>(salesDatas);
+                var ret = Mapper.Map<IEnumerable<SalesData>>(salesDatas);
+                return ret;
             }
             catch (Exception ex) { throw ex; }
             
