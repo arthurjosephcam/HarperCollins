@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Router } from "@angular/router";
 
 
 @Injectable({
@@ -9,10 +10,21 @@ export class HarperCollinsCommonFunctions
 {
   constructor(
     private messageService: MessageService,
+    private router: Router,
   )
   {
   }
 
+  navigateToRoute(route: any[])
+  {
+    this.router.navigate(route);
+  }
+
+  routeToSalesPage()
+  {
+
+    this.navigateToRoute(['/app-viewSales']);
+  }
 
   public generateGuid()
   {

@@ -4,28 +4,38 @@
 
 <p *ngIf="!sales"><em>Loading...</em></p>
 
-<p-table [value]="sales" *ngIf="sales">
+<p-table [value]="sales" *ngIf="sales" dataKey="guid">
   <ng-template pTemplate="header">
     <tr>
 
-      <th>guid</th>
-      <th>orderDate</th>
-      <th>orderQuantity</th>
-      <th>orderStatus</th>
-      <th>customerNumber</th>
-      <th>customerName</th>
+     
+
+      <th>ISBN</th>
+      <th>Order Status</th>
+      <th>Book Title</th>
+      <th>Author</th>
+      <th>Price</th>
+      <th>Quantity</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-sale>
-    <tr>
-      <td>{{ sale.isbn}}</td>
-      <td>{{ sale.orderDate}}</td>
-      <td>{{ sale.orderQuantity}}</td>
-      <td>{{ sale.orderStatus}}</td>
-      <td>{{ sale.customerNumber}}</td>
-      <td>{{ sale.customerName}}</td>
-    </tr>
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
 
+    <tr class="ui-widget-header" *ngIf="rowGroupMetadata[rowData.salesId].index === rowIndex">
+      <td colspan="6">
+        <span style="font-weight:bold">Customer: </span> {{ rowData.customerName}} &nbsp;
+        <span style="font-weight:bold">Order Date: </span> {{rowData.orderDate}} &nbsp;
+        <span style="font-weight:bold">Sales Id: </span>  {{rowData.salesId}} &nbsp;
+      </td>
+    </tr>
+    <tr>
+    <td>{{ rowData.isbn}}</td>
+    <td>{{ rowData.orderStatus}}</td>
+    <td>{{ rowData.title}}</td>
+    <td>{{ rowData.author}}</td>
+    <td>{{ rowData.listPrice}}</td>
+    <td>{{ rowData.orderQuantity}}</td>
+
+    </tr>
   </ng-template>
   <ng-template pTemplate="emptymessage">
     <tr>

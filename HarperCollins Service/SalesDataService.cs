@@ -24,10 +24,10 @@ namespace HarperCollins.Service
 
         public Boolean BulkAddSalesData(IEnumerable<SalesData> SalesDatas)
         {
-            var salesID = Guid.NewGuid();
+            //var salesID = Guid.NewGuid();
             foreach(var salesData in SalesDatas)
             {
-                salesData.SalesId = salesID;
+                //salesData.SalesId = salesID;
                 UnitOfWork.SalesDataRepository.AddSalesData(Mapper.Map<Repository.Models.SalesData>(salesData));
             }
 

@@ -153,7 +153,7 @@ export class SalesComponent
       tempSale.orderQuantity = titleItem.orderQuantity;
       tempSale.orderDate = dateNow;
       tempSale.orderStatus = 'Pending';
-      tempSale.guid = guid;
+      tempSale.salesId = guid;
       tempSale.author = titleItem.author;
       tempSale.format = titleItem.format;
       tempSale.listPrice = titleItem.listPrice;
@@ -171,6 +171,7 @@ export class SalesComponent
       () =>
       {
         this.commonFunctions.showToasterSuccess("Sale Successfull", "Sale succesfully created.");
+        this.commonFunctions.routeToSalesPage();
       }
     );
   }

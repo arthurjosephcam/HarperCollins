@@ -22,7 +22,7 @@ export namespace HarperCollins
 
   export class saleData
   {
-    public guid: String;
+    public salesId: String;
     public orderDate: Date;
     public orderQuantity: number;
     public orderStatus: String;
