@@ -3,11 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import {HarperCollinsService } from '../ServiceLayer/harperCollins.Service'
 import { HarperCollins } from '../ServiceLayer/harperCollins.Objects'
 import { HarperCollinsCommonFunctions } from '../ServiceLayer/harperCollins.CommonFunctions'
+import { ConfirmationService } from 'primeng/api';
 import { error } from 'protractor';
 
 @Component({
   selector: 'app-sales',
-  templateUrl: './sales.component.html'
+  templateUrl: './sales.component.html',
+  providers: [ConfirmationService]
 })
 export class SalesComponent
 {
@@ -20,6 +22,7 @@ export class SalesComponent
   searchKeyword: String;
   isProcessing: boolean;
   step: String = "selectCustomer";
+  validationError: boolean = false;
 
   ccRegex: RegExp = /[0-9]+$/;
 
@@ -28,7 +31,8 @@ export class SalesComponent
 
   constructor(
     private hcApi: HarperCollinsService,
-    private commonFunctions: HarperCollinsCommonFunctions
+    private commonFunctions: HarperCollinsCommonFunctions,
+    private confirmationService: ConfirmationService
 
   )
   {
@@ -110,15 +114,41 @@ export class SalesComponent
   }
 
 
-  validateQuantity(quantity: number, row: HarperCollins.tileData)
+  askForRemoval(title: HarperCollins.tileData)
   {
-    if (quantity < 1)
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to remove ' + title.title+' from the sales?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () =>
+      {
+        var index = this.titlesToSale.indexOf(title);
+        this.titlesToSale.splice(index, 1);
+      },
+      reject: () =>
+      {
+        return;
+      }
+    });
+  }
+
+  completeSale()
+  {
+
+  }
+
+  validateQuantity(quantity, row: HarperCollins.tileData)
+  {
+    this.validationError = false;
+    if (quantity == null || (<string>quantity)=="") return;
+    if (<number>quantity < 1)
     {
-      this.commonFunctions.showToasterError("validation Error", "Order Quantity cannot be zero.");
+      this.validationError = true;
+      //this.commonFunctions.showToasterError("validation Error", "Order Quantity cannot be zero.");
       return;
     }
-
-    row.orderQuantity = quantity;
+    this.validationError = false;
+    row.orderQuantity = <number>quantity;
   }
 
 }

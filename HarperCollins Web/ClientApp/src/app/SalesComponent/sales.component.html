@@ -1,3 +1,5 @@
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
 <div *ngIf="step==='selectCustomer'">
   <p>Search for clients</p>
   <div class="container-fluid">
@@ -87,7 +89,7 @@
                 <td>{{ title.author}}</td>
                 <td>{{ title.format}}</td>
                 <td>{{ title.listPrice}}</td>
-                <td><button (click)="selectTitle(title)">+</button></td>
+                <td align="center"><button pButton  type="button" class="ui-button-success" (click)="selectTitle(title)" icon="pi pi-plus"></button></td>
 
               </tr>
             </ng-template>
@@ -130,14 +132,14 @@
                   <ng-template pTemplate="input">
 
                     <input pInputText type="text" [pKeyFilter]="ccRegex" (input)="validateQuantity($event.target.value, titleToSale)" required>
-                   
+                    <span class="text-danger"><b *ngIf="validationError">*</b></span>
                   </ng-template>
                   <ng-template pTemplate="output">
                     {{titleToSale.orderQuantity}}
                   </ng-template>
                 </p-cellEditor>
               </td>
-             <td><button title="Remove {{titleToSale.title}}" (click)="askForRemoval(titleToSale)">-</button></td>
+             <td align="center"><button pButton type="button" class="ui-button-danger" icon="pi pi-minus" title="Remove {{titleToSale.title}}" (click)="askForRemoval(titleToSale)"></button></td>
 
             </tr>
           </ng-template>
@@ -149,6 +151,15 @@
             </tr>
           </ng-template>
         </p-table>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-6">
+        <p-button icon="pi pi-shopping-cart" (click)="completeSale()" label="Complete Sale"></p-button>
+      </div>
+      <div class="col-6" >
+        <p-button *ngIf="false" class="ui-button-danger" icon="pi pi-shopping-cart" label="Cancel"></p-button>
       </div>
     </div>
   </div>

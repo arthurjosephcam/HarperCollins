@@ -14,5 +14,11 @@ var HarperCollins;
         return tileData;
     }());
     HarperCollins.tileData = tileData;
+    var saleData = /** @class */ (function () {
+        function saleData() {
+        }
+        return saleData;
+    }());
+    HarperCollins.saleData = saleData;
 })(HarperCollins = exports.HarperCollins || (exports.HarperCollins = {}));
 //# sourceMappingURL=harperCollins.Objects.js.map

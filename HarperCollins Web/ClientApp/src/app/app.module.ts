@@ -21,7 +21,8 @@ import { MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { MessageModule } from 'primeng/message';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import { MessageModule } from 'primeng/message';
     TableModule,
     ToastModule,
     AutoCompleteModule,
+    ConfirmDialogModule,
+    ButtonModule,
     KeyFilterModule,
     MessageModule,
     FormsModule,
