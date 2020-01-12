@@ -17,6 +17,7 @@ export class SalesComponent
   customers: HarperCollins.customerData[];
   titles: HarperCollins.tileData[];
   titlesToSale: Array<HarperCollins.tileData> = new Array();
+  sales: Array<HarperCollins.saleData>;
 
   selectedCustomer: HarperCollins.customerData;
   searchKeyword: String;
@@ -134,7 +135,39 @@ export class SalesComponent
 
   completeSale()
   {
+    
+    this.sales = new Array();
+    var dateNow = new Date();
+    var guid = this.commonFunctions.generateGuid();
 
+    for (var titleItem of this.titlesToSale)
+    {
+      var tempSale = new HarperCollins.saleData;
+      tempSale.customerNumber = this.selectedCustomer.customerNumber;
+      tempSale.isbn = titleItem.isbn;
+      tempSale.orderQuantity = titleItem.orderQuantity;
+      tempSale.orderDate = dateNow;
+      tempSale.orderStatus = 'Pending';
+      tempSale.guid = guid;
+      tempSale.author = titleItem.author;
+      tempSale.format = titleItem.format;
+      tempSale.listPrice = titleItem.listPrice;
+      tempSale.title = titleItem.title;
+      this.sales.push(tempSale);
+    }
+
+    this.hcApi.completeSale(this.sales).subscribe(result => { },
+      error =>
+      {
+        this.commonFunctions.writeIt(error);
+        this.commonFunctions.showToasterError("Error saving sale.", "A server side error occured! Please see the console for error details!");
+
+      },
+      () =>
+      {
+        this.commonFunctions.showToasterSuccess("Sale Successfull", "Sale succesfully created.");
+      }
+    );
   }
 
   validateQuantity(quantity, row: HarperCollins.tileData)

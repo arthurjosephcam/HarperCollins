@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Title } from '@angular/platform-browser';
 import { Injectable, Inject } from '@angular/core';
+import { HarperCollins } from './harperCollins.Objects';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -21,6 +22,17 @@ export class HarperCollinsService
 
 
 
+  completeSale(sales: HarperCollins.saleData[])
+  {
+    var ret = this.http.post(this.baseUrl + 'api/SalesData/SaveSales', sales, httpOptions);
+      return ret;
+  }
+
+  getAllSales()
+  {
+    var ret = this.http.get(this.baseUrl + 'api/SalesData/GetAllSales');
+    return ret;
+  }
   searchCustomers(keyword: String)
   {
     var ret = this.http.get(this.baseUrl + 'api/CustomerData/SearchClients?Keyword=' + keyword);

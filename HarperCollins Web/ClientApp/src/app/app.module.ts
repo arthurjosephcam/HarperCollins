@@ -13,6 +13,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ClientsComponent } from './ClientsComponent/clients.component';
 import { TitlesComponent } from './TitlesComponent/titles.component';
 import { SalesComponent } from './SalesComponent/sales.component';
+import { ViewSalesComponent } from './ViewSalesComponent/viewSales.component';
+
 
 //primeng modules and services
 import { ToastModule } from 'primeng/toast';
@@ -32,6 +34,7 @@ import { ButtonModule } from 'primeng/button';
     CounterComponent,
     FetchDataComponent,
     ClientsComponent,
+    ViewSalesComponent,
     TitlesComponent,
     SalesComponent
   ],
@@ -54,6 +57,7 @@ import { ButtonModule } from 'primeng/button';
       { path: 'app-clients', component: ClientsComponent },
       { path: 'app-titles', component: TitlesComponent },
       { path: 'app-sales', component: SalesComponent },
+      { path: 'app-viewSales', component: ViewSalesComponent },
 
 
     ])

@@ -22,17 +22,18 @@ export namespace HarperCollins
 
   export class saleData
   {
-    public Guid: String;
-    //public Guid SalesId { get; set; }
-    //    public DateTime OrderDate { get; set; }
-
-    //    public Int32 OrderQuantity { get; set; }
-    //    public String OrderStatus { get; set; }
-
-    //    public Int32 CustomerNumber { get; set; }
-    //    public CustomerData CustomerData { get; set; }
-
-    //    public String ISBN { get; set; }
-    //    public TileData TileData { get; set; }
+    public guid: String;
+    public orderDate: Date;
+    public orderQuantity: number;
+    public orderStatus: String;
+    public customerNumber: number;
+    public customerName: String;
+    //public customerData?: HarperCollins.customerData;
+    public isbn?: String;
+    public title: String;
+    public author: String;
+    public format: String;
+    public listPrice: number;
+   
   }
 }

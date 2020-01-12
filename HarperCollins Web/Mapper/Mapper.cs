@@ -12,8 +12,11 @@ namespace HarperCollins.WebApplication
 
                cfg.CreateMap <Service.Models.CustomerData, Models.CustomerData>().ReverseMap();
                cfg.CreateMap <Service.Models.SalesData, Models.SalesData>()
-                 .ForMember(dest => dest.CustomerData, target => target.MapFrom(s => s.CustomerData))
-                 .ForMember(dest => dest.TileData, target => target.MapFrom(s => s.TileData))
+                 .ForMember(dest => dest.CustomerName, target => target.MapFrom(s => s.CustomerData.CustomerName))
+                 .ForMember(dest => dest.Format, target => target.MapFrom(s => s.TileData.Format))
+                 .ForMember(dest => dest.ListPrice, target => target.MapFrom(s => s.TileData.ListPrice))
+                 .ForMember(dest => dest.Author, target => target.MapFrom(s => s.TileData.Author))
+                 .ForMember(dest => dest.Title, target => target.MapFrom(s => s.TileData.Title))
                  .ReverseMap();
                cfg.CreateMap <Service.Models.TileData, Models.TileData>().ReverseMap();
 
