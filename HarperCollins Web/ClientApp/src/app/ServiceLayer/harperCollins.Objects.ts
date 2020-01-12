@@ -16,6 +16,7 @@ export namespace HarperCollins
     public author: String;
     public format: String;
     public listPrice: number;
+    public orderQuantity: number; //I will use it to track order quantity.
         
   }
 }

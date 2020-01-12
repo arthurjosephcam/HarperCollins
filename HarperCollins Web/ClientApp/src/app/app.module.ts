@@ -18,6 +18,8 @@ import { ToastModule } from 'primeng/toast';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { MessageModule } from 'primeng/message';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { TableModule } from 'primeng/table';
     TableModule,
     ToastModule,
     AutoCompleteModule,
+    KeyFilterModule,
+    MessageModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },

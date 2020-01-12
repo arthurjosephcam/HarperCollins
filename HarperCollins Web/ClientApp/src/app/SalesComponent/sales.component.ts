@@ -14,11 +14,16 @@ export class SalesComponent
 
   customers: HarperCollins.customerData[];
   titles: HarperCollins.tileData[];
+  titlesToSale: Array<HarperCollins.tileData> = new Array();
 
   selectedCustomer: HarperCollins.customerData;
   searchKeyword: String;
   isProcessing: boolean;
   step: String = "selectCustomer";
+
+  ccRegex: RegExp = /[0-9]+$/;
+
+  //noSpecial: RegExp = /^[^<>*!]+$/
 
 
   constructor(
@@ -93,6 +98,15 @@ export class SalesComponent
       }
 
     );
+  }
+
+
+  selectTitle(title: HarperCollins.tileData)
+  {
+    if (this.titlesToSale.includes(title)) return;
+
+    title.orderQuantity = 1;
+    this.titlesToSale.push(title);
   }
 
 }

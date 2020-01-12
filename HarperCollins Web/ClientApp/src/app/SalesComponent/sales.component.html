@@ -20,7 +20,7 @@
             <th>Address Line1</th>
             <th>Address Line2</th>
             <th>Address Line3</th>
-            <th>Create Sales</th>
+            <th>Create Sale</th>
           </tr>
         </thead>
         <tbody>
@@ -69,7 +69,7 @@
         <div class="row" *ngIf="!isProcessing">
           <br />
           <p *ngIf="!titles"><em>Search to find titles.</em></p>
-          <p-table [value]="titles" *ngIf="titles">
+          <p-table [value]="titles" [scrollable]="true" scrollHeight="400px" *ngIf="titles">
             <ng-template pTemplate="header">
               <tr>
                 <th>ISBN</th>
@@ -92,14 +92,67 @@
               </tr>
             </ng-template>
           </p-table>
-</div>
+        </div>
         <div class="row" *ngIf="isProcessing">
           Loading..
         </div>
       </div>
     </div>
+    <br />
+    <div class="row">
+      <div class="col-12">
+        <span class="text-harper-title"><i class="pi pi-shopping-cart"></i>Sales:</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col12">
+        <p-table [value]="titlesToSale">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ISBN</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Format</th>
+              <th>List Price</th>
+              <th>Order Quantity</th>
+              <th>Remove</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-titleToSale>
+            <tr>
+              <td>{{ titleToSale.isbn}}</td>
+              <td>{{ titleToSale.title}}</td>
+              <td>{{ titleToSale.author}}</td>
+              <td>{{ titleToSale.format}}</td>
+              <td>{{ titleToSale.listPrice}}</td>
+              <td align="center" pEditableColumn>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    
+                      <input pInputText type="text" min="1" [pKeyFilter]="ccRegex" [(ngModel)]="titleToSale.orderQuantity" required>
+                    
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{titleToSale.orderQuantity}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+             <td><button title="Remove {{titleToSale.title}}" (click)="askForRemoval(titleToSale)">-</button></td>
+
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td [attr.colspan]="7">
+                No records found
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
 
- 
+
 
 </div>
