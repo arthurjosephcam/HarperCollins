@@ -135,7 +135,12 @@ export class SalesComponent
 
   completeSale()
   {
-    
+
+    if (this.titlesToSale.length == 0)
+    {
+      this.commonFunctions.showToasterError("No Book Selected!", "Add books to complete sales!");
+      return;
+    }
     this.sales = new Array();
     var dateNow = new Date();
     var guid = this.commonFunctions.generateGuid();

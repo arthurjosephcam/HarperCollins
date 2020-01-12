@@ -24,10 +24,10 @@ namespace HarperCollins.Repository.Configurations
 
 
             HasRequired(f => f.TileData)
-                .WithMany(f=> f.Sales)
+                .WithMany(f => f.Sales)
                 .HasForeignKey(f => f.ISBN);
             HasRequired(f => f.CustomerData)
-                .WithMany(f=> f.Sales)
+                .WithMany(f => f.Sales)
                 .HasForeignKey(cd => cd.CustomerNumber);
 
 

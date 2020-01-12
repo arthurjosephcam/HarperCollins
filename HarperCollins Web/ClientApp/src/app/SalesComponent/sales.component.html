@@ -159,7 +159,7 @@
         <p-button icon="pi pi-shopping-cart" (click)="completeSale()" label="Complete Sale"></p-button>
       </div>
       <div class="col-6" >
-        <p-button *ngIf="false" class="ui-button-danger" icon="pi pi-shopping-cart" label="Cancel"></p-button>
+        <p-button [disabled]="titlesToSale.length > 0" *ngIf="false" class="ui-button-danger" icon="pi pi-shopping-cart" label="Cancel"></p-button>
       </div>
     </div>
   </div>
