@@ -128,9 +128,9 @@
               <td align="center" pEditableColumn>
                 <p-cellEditor>
                   <ng-template pTemplate="input">
-                    
-                      <input pInputText type="text" min="1" [pKeyFilter]="ccRegex" [(ngModel)]="titleToSale.orderQuantity" required>
-                    
+
+                    <input pInputText type="text" [pKeyFilter]="ccRegex" (input)="validateQuantity($event.target.value, titleToSale)" required>
+                   
                   </ng-template>
                   <ng-template pTemplate="output">
                     {{titleToSale.orderQuantity}}

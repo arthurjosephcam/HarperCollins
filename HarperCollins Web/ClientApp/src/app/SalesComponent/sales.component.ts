@@ -109,5 +109,17 @@ export class SalesComponent
     this.titlesToSale.push(title);
   }
 
+
+  validateQuantity(quantity: number, row: HarperCollins.tileData)
+  {
+    if (quantity < 1)
+    {
+      this.commonFunctions.showToasterError("validation Error", "Order Quantity cannot be zero.");
+      return;
+    }
+
+    row.orderQuantity = quantity;
+  }
+
 }
 
