@@ -11,8 +11,7 @@ import { error } from 'protractor';
   templateUrl: './sales.component.html',
   providers: [ConfirmationService]
 })
-export class SalesComponent
-{
+export class SalesComponent {
 
   customers: HarperCollins.customerData[];
   titles: HarperCollins.tileData[];
@@ -35,40 +34,34 @@ export class SalesComponent
     private commonFunctions: HarperCollinsCommonFunctions,
     private confirmationService: ConfirmationService
 
-  )
-  {
+  ) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     //this.loadCustomers();
   }
 
-  loadCustomers()
-  {
-    this.hcApi.getAllClients().subscribe(result =>
-    {
+  loadCustomers() {
+    this.hcApi.getAllClients().subscribe(result => {
       this.customers = <HarperCollins.customerData[]>result;
     });
   }
 
-  
 
-  searchCustomers()
-  {
+
+  searchCustomers() {
     if (this.searchKeyword == '' || this.searchKeyword == null) return;
     this.isProcessing = true;
 
-    this.hcApi.searchCustomers(this.searchKeyword).subscribe(result =>
-    {
+    this.hcApi.searchCustomers(this.searchKeyword).subscribe(result => {
       this.customers = <HarperCollins.customerData[]>result;
     },
       error => {
         this.commonFunctions.writeIt(error);
         this.commonFunctions.showToasterError("Error loading customer.", "A server side error occured! Please see the console for error details!");
-        this.isProcessing = false;},
-      () =>
-      {
+        this.isProcessing = false;
+      },
+      () => {
         this.isProcessing = false;
       }
 
@@ -76,29 +69,24 @@ export class SalesComponent
   }
 
 
-  selectCustomer(customer: HarperCollins.customerData)
-  {
+  selectCustomer(customer: HarperCollins.customerData) {
     this.selectedCustomer = customer;
     this.step = "selectTitle";
-    
+
   }
 
-  searchTitles(searchKey: String)
-  {
+  searchTitles(searchKey: String) {
     this.isProcessing = true;
 
-    this.hcApi.searchTitles(searchKey).subscribe(result =>
-    {
+    this.hcApi.searchTitles(searchKey).subscribe(result => {
       this.titles = <HarperCollins.tileData[]>result;
     },
-      error =>
-      {
+      error => {
         this.commonFunctions.writeIt(error);
         this.commonFunctions.showToasterError("Error loading titles.", "A server side error occured! Please see the console for error details!");
         this.isProcessing = false;
       },
-      () =>
-      {
+      () => {
         this.isProcessing = false;
       }
 
@@ -106,8 +94,7 @@ export class SalesComponent
   }
 
 
-  selectTitle(title: HarperCollins.tileData)
-  {
+  selectTitle(title: HarperCollins.tileData) {
     if (this.titlesToSale.includes(title)) return;
 
     title.orderQuantity = 1;
@@ -115,29 +102,24 @@ export class SalesComponent
   }
 
 
-  askForRemoval(title: HarperCollins.tileData)
-  {
+  askForRemoval(title: HarperCollins.tileData) {
     this.confirmationService.confirm({
-      message: 'Are you sure that you want to remove ' + title.title+' from the sales?',
+      message: 'Are you sure that you want to remove ' + title.title + ' from the sales?',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      accept: () =>
-      {
+      accept: () => {
         var index = this.titlesToSale.indexOf(title);
         this.titlesToSale.splice(index, 1);
       },
-      reject: () =>
-      {
+      reject: () => {
         return;
       }
     });
   }
 
-  completeSale()
-  {
+  completeSale() {
 
-    if (this.titlesToSale.length == 0)
-    {
+    if (this.titlesToSale.length == 0) {
       this.commonFunctions.showToasterError("No Book Selected!", "Add books to complete sales!");
       return;
     }
@@ -145,8 +127,7 @@ export class SalesComponent
     var dateNow = new Date();
     var guid = this.commonFunctions.generateGuid();
 
-    for (var titleItem of this.titlesToSale)
-    {
+    for (var titleItem of this.titlesToSale) {
       var tempSale = new HarperCollins.saleData;
       tempSale.customerNumber = this.selectedCustomer.customerNumber;
       tempSale.isbn = titleItem.isbn;
@@ -162,26 +143,22 @@ export class SalesComponent
     }
 
     this.hcApi.completeSale(this.sales).subscribe(result => { },
-      error =>
-      {
+      error => {
         this.commonFunctions.writeIt(error);
         this.commonFunctions.showToasterError("Error saving sale.", "A server side error occured! Please see the console for error details!");
 
       },
-      () =>
-      {
+      () => {
         this.commonFunctions.showToasterSuccess("Sale Successfull", "Sale succesfully created.");
         this.commonFunctions.routeToSalesPage();
       }
     );
   }
 
-  validateQuantity(quantity, row: HarperCollins.tileData)
-  {
+  validateQuantity(quantity, row: HarperCollins.tileData) {
     this.validationError = false;
-    if (quantity == null || (<string>quantity)=="") return;
-    if (<number>quantity < 1)
-    {
+    if (quantity == null || (<string>quantity) == "") return;
+    if (<number>quantity < 1) {
       this.validationError = true;
       //this.commonFunctions.showToasterError("validation Error", "Order Quantity cannot be zero.");
       return;

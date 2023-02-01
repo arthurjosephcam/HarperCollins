@@ -7,41 +7,33 @@ import {HarperCollins } from '../ServiceLayer/harperCollins.Objects'
   selector: 'app-viewSales',
   templateUrl: './viewSales.component.html'
 })
-export class ViewSalesComponent
-{
+export class ViewSalesComponent {
   rowGroupMetadata: any;
   sales: HarperCollins.saleData[];
 
   constructor(
     private hcApi: HarperCollinsService,
 
-  )
-  {
+  ) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.loadSales();
-    
-    
+
+
   }
 
 
-  updateRowGroupMetaData()
-  {
+  updateRowGroupMetaData() {
     this.rowGroupMetadata = {};
-    if (this.sales)
-    {
-      for (let i = 0; i < this.sales.length; i++)
-      {
+    if (this.sales) {
+      for (let i = 0; i < this.sales.length; i++) {
         let rowData = this.sales[i];
         let salesId = rowData.salesId;
-        if (i == 0)
-        {
+        if (i == 0) {
           this.rowGroupMetadata[salesId.toString()] = { index: 0, size: 1 };
         }
-        else
-        {
+        else {
           let previousRowData = this.sales[i - 1];
           let previousRowGroup = previousRowData.salesId;
           if (salesId === previousRowGroup)
@@ -53,15 +45,12 @@ export class ViewSalesComponent
     }
   }
 
-  loadSales()
-  {
-    this.hcApi.getAllSales().subscribe(result =>
-    {
+  loadSales() {
+    this.hcApi.getAllSales().subscribe(result => {
       this.sales = <HarperCollins.saleData[]>result;
       this.updateRowGroupMetaData();
     },
-      () =>
-      {
+      () => {
         //this.updateRowGroupMetaData();
       }
     );

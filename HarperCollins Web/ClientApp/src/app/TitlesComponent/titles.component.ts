@@ -7,27 +7,22 @@ import {HarperCollins } from '../ServiceLayer/harperCollins.Objects'
   selector: 'app-titles',
   templateUrl: './titles.component.html'
 })
-export class TitlesComponent
-{
+export class TitlesComponent {
 
   titles: HarperCollins.tileData[];
 
   constructor(
     private hcApi: HarperCollinsService,
 
-  )
-  {
+  ) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.loadTitles();
   }
 
-  loadTitles()
-  {
-    this.hcApi.getAllTitles().subscribe(result =>
-    {
+  loadTitles() {
+    this.hcApi.getAllTitles().subscribe(result => {
       this.titles = <HarperCollins.tileData[]>result;
     });
   }

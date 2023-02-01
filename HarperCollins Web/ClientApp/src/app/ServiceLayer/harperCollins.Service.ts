@@ -12,8 +12,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class HarperCollinsService
-{
+export class HarperCollinsService {
   constructor(
     private http: HttpClient,
     @Inject('BASE_URL') private baseUrl: string,
@@ -22,37 +21,31 @@ export class HarperCollinsService
 
 
 
-  completeSale(sales: HarperCollins.saleData[])
-  {
+  completeSale(sales: HarperCollins.saleData[]) {
     var ret = this.http.post(this.baseUrl + 'api/SalesData/SaveSales', sales, httpOptions);
-      return ret;
+    return ret;
   }
 
-  getAllSales()
-  {
+  getAllSales() {
     var ret = this.http.get(this.baseUrl + 'api/SalesData/GetAllSales');
     return ret;
   }
-  searchCustomers(keyword: String)
-  {
+  searchCustomers(keyword: String) {
     var ret = this.http.get(this.baseUrl + 'api/CustomerData/SearchClients?Keyword=' + keyword);
     return ret;
   }
 
-  searchTitles(keyword: String)
-  {
+  searchTitles(keyword: String) {
     var ret = this.http.get(this.baseUrl + 'api/TileData/SearchTiles?Keyword=' + keyword);
     return ret;
   }
 
-  getAllClients()
-  {
+  getAllClients() {
     var ret = this.http.get(this.baseUrl + 'api/CustomerData/getAllClients');
     return ret;
   }
 
-  getAllTitles()
-  {
+  getAllTitles() {
     var ret = this.http.get(this.baseUrl + 'api/TileData/getAllTiles');
     return ret;
   }

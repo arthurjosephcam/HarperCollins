@@ -1,7 +1,5 @@
-export namespace HarperCollins
-{
-  export class customerData
-  {
+export namespace HarperCollins {
+  export class customerData {
     public customerNumber: number;
     public customerName: String;
     public addressLine1: String;
@@ -9,19 +7,17 @@ export namespace HarperCollins
     public addressLine3: String;
   }
 
-  export class tileData
-  {
+  export class tileData {
     public isbn: String;
     public title: String;
     public author: String;
     public format: String;
     public listPrice: number;
     public orderQuantity: number; //I will use it to track order quantity.
-        
+
   }
 
-  export class saleData
-  {
+  export class saleData {
     public salesId: String;
     public orderDate: Date;
     public orderQuantity: number;
@@ -35,6 +31,6 @@ export namespace HarperCollins
     public format: String;
     public listPrice: number;
     //public tileData?: HarperCollins.saleData;
-   
+
   }
 }

@@ -7,27 +7,22 @@ import {HarperCollins } from '../ServiceLayer/harperCollins.Objects'
   selector: 'app-clients',
   templateUrl: './clients.component.html'
 })
-export class ClientsComponent
-{
+export class ClientsComponent {
 
   customers: HarperCollins.customerData[];
 
   constructor(
     private hcApi: HarperCollinsService,
 
-  )
-  {
+  ) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit() {
     this.loadCustomers();
   }
 
-  loadCustomers()
-  {
-    this.hcApi.getAllClients().subscribe(result =>
-    {
+  loadCustomers() {
+    this.hcApi.getAllClients().subscribe(result => {
       this.customers = <HarperCollins.customerData[]>result;
     });
   }
